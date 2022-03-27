@@ -1,3 +1,4 @@
+package SquareModyfication;
 import java.util.Arrays;
 
 public class Rectangle
