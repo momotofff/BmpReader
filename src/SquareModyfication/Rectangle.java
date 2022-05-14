@@ -5,17 +5,24 @@ public class Rectangle
 {
     private interface Filler
     {
-        int getElement(int x, int y);
+        Integer getElement(int x, int y);
     }
 
-    private int[][] array = new int[0][0];
+    private Integer[][] array = new Integer[0][0];
 
-    public int[][] getArray() { return array; }
+    public Integer[][] getArray() { return array; }
     Rectangle(int width, int height)
     {
         setSize(width, height);
     }
-    Rectangle(int[][] arr) { this.array = arr; }
+    Rectangle(int[][] arr)
+    {
+        setSize(arr.length, arr[0].length);
+
+        for (int x = 0; x < getWidth(); ++x)
+            for (int y = 0; y < getHeight(); ++y)
+                array[x][y] = arr[x][y];
+    }
 
     public int getWidth() { return array.length; }
     public int getHeight() { return array[0].length; }
@@ -25,10 +32,10 @@ public class Rectangle
         if (width <= 0 || height <= 0)
             throw new RuntimeException("Попробуйте еще раз)))");
 
-        this.array = new int[width][height];
+        this.array = new Integer[width][height];
     }
 
-    public void fillRandomly()
+    public  void fillRandomly()
     {
         for (int i = 0; i < getWidth(); ++i)
             for (int j = 0; j < getHeight(); ++j)
@@ -40,9 +47,9 @@ public class Rectangle
     {
         StringBuilder result = new StringBuilder();
 
-        for (int[] ints : array)
+        for (Integer[] ints : array)
         {
-            for (int value: ints)
+            for (Integer value: ints)
                 result.append(value).append(" ");
 
             result.append("\n");
